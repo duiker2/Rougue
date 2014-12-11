@@ -123,6 +123,7 @@ public class Status : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+		floor = GameObject.FindGameObjectWithTag ("MapGen").GetComponent<MakeMap> ().DungeonFloor;
 		if (gameObject.tag == "Enemy") {
 			level = Random.Range (floor, floor+5);
             enemyLevelStats();
@@ -162,6 +163,12 @@ public class Status : MonoBehaviour {
         baseStrength += strengthGain * level;
         baseIntelligence += intelligenceGain * level;
         baseAgility += agilityGain * level;
+        if(floor > 15)
+        {
+            baseStrength += (int) (Mathf.Pow(2,(floor-15)));
+            baseAgility += (int) (Mathf.Pow(2,(floor-15)));
+            baseIntelligence += (int) (Mathf.Pow(2,(floor-15)));
+        }
     }
 
 
